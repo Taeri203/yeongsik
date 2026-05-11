@@ -10,6 +10,7 @@ create table if not exists public.voice_submissions (
   created_at timestamptz not null default now(),
   name text not null,
   phone text not null,
+  email text,
   residence text not null,
   age text not null,
   category text not null,
@@ -36,6 +37,13 @@ with check (false);
 ```
 
 The website uses the server-only `SUPABASE_SERVICE_ROLE_KEY`, so visitors cannot read or write this table directly.
+
+If the table already exists, run this SQL once to add the optional email field.
+
+```sql
+alter table public.voice_submissions
+add column if not exists email text;
+```
 
 ## 2. Add Vercel environment variables
 

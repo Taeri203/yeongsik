@@ -5,6 +5,7 @@ import { Resend } from "resend";
 type VoicePayload = {
   name?: string;
   phone?: string;
+  email?: string;
   residence?: string;
   age?: string;
   category?: string;
@@ -56,6 +57,7 @@ function createEmailHtml(payload: Required<VoicePayload>) {
   const safePayload = {
     name: escapeHtml(payload.name),
     phone: escapeHtml(payload.phone),
+    email: escapeHtml(payload.email),
     residence: escapeHtml(payload.residence),
     age: escapeHtml(payload.age),
     category: escapeHtml(payload.category),
@@ -71,6 +73,7 @@ function createEmailHtml(payload: Required<VoicePayload>) {
         <tbody>
           <tr><th align="left" style="padding: 8px; background: #EAF4FF;">이름</th><td style="padding: 8px;">${safePayload.name}</td></tr>
           <tr><th align="left" style="padding: 8px; background: #EAF4FF;">연락처</th><td style="padding: 8px;">${safePayload.phone}</td></tr>
+          <tr><th align="left" style="padding: 8px; background: #EAF4FF;">이메일</th><td style="padding: 8px;">${safePayload.email || "-"}</td></tr>
           <tr><th align="left" style="padding: 8px; background: #EAF4FF;">거주지</th><td style="padding: 8px;">${safePayload.residence}</td></tr>
           <tr><th align="left" style="padding: 8px; background: #EAF4FF;">연령대</th><td style="padding: 8px;">${safePayload.age}</td></tr>
           <tr><th align="left" style="padding: 8px; background: #EAF4FF;">분야</th><td style="padding: 8px;">${safePayload.category}</td></tr>
@@ -90,6 +93,7 @@ export async function POST(request: Request) {
     const payload: Required<VoicePayload> = {
       name: clean(rawPayload.name),
       phone: clean(rawPayload.phone),
+      email: clean(rawPayload.email),
       residence: clean(rawPayload.residence),
       age: clean(rawPayload.age),
       category: clean(rawPayload.category),
@@ -113,6 +117,7 @@ export async function POST(request: Request) {
     const { error } = await supabase.from("voice_submissions").insert({
       name: payload.name,
       phone: payload.phone,
+      email: payload.email || null,
       residence: payload.residence,
       age: payload.age,
       category: payload.category,

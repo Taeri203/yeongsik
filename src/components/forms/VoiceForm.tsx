@@ -30,6 +30,7 @@ export function VoiceForm() {
         body: JSON.stringify({
           name: formData.get("name"),
           phone: formData.get("phone"),
+          email: formData.get("email"),
           residence: formData.get("residence"),
           age: formData.get("age"),
           category: formData.get("category"),
@@ -86,6 +87,15 @@ export function VoiceForm() {
           <input required id="phone" name="phone" className="form-input" placeholder="010-0000-0000" />
         </Field>
       </div>
+      <Field label="이메일 (선택)" id="email">
+        <input
+          id="email"
+          name="email"
+          type="email"
+          className="form-input"
+          placeholder="답변을 이메일로 받고 싶다면 입력해 주세요"
+        />
+      </Field>
       <div className="grid gap-5 md:grid-cols-3">
         <Field label="거주지" id="residence">
           <select required id="residence" name="residence" className="form-input">
