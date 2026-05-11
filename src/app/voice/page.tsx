@@ -24,9 +24,9 @@ export default function VoicePage() {
       <section className="py-16">
         <div className="container-page grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
           <div className="grid gap-4 self-start">
-            <SectionTitle title="동네에서 느낀 불편을 편하게 적어주세요" description="이 폼은 실제 서버로 전송되지 않는 정적 홈페이지용 접수 화면입니다." />
+            <SectionTitle title="동네에서 느낀 불편을 편하게 적어주세요" description="남겨주신 제보는 선거사무소 확인용 접수 시스템에 안전하게 저장됩니다." />
             <SafetyNotice>
-              제출하면 화면에서 접수 완료 메시지만 표시됩니다. 실제 운영 시에는 선거사무소 검수 후 접수 방식이 업데이트될 수 있습니다.
+              접수된 내용은 담당자가 확인한 뒤 공약지도와 현장점검에 반영합니다. 답변을 희망하신 경우 남겨주신 연락처로 확인 연락을 드릴 수 있습니다.
             </SafetyNotice>
           </div>
           <VoiceForm />
