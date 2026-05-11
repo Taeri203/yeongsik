@@ -10,12 +10,49 @@ const categories = ["교통", "통학안전", "주차", "생활환경", "복지"
 
 export function VoiceForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
-    event.currentTarget.reset();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setErrorMessage("");
+    setIsSubmitting(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/voice", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          residence: formData.get("residence"),
+          age: formData.get("age"),
+          category: formData.get("category"),
+          location: formData.get("location"),
+          title: formData.get("title"),
+          content: formData.get("content"),
+          reply: formData.get("reply"),
+        }),
+      });
+
+      if (!response.ok) {
+        const result = (await response.json().catch(() => null)) as { message?: string } | null;
+        throw new Error(result?.message || "제보 접수에 실패했습니다.");
+      }
+
+      setSubmitted(true);
+      form.reset();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "제보 접수 중 오류가 발생했습니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -104,12 +141,18 @@ export function VoiceForm() {
       </label>
       <button
         type="submit"
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#004EA2] px-7 py-4 text-lg font-black text-white shadow-lg"
+        disabled={isSubmitting}
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#004EA2] px-7 py-4 text-lg font-black text-white shadow-lg transition hover:bg-[#003F86] disabled:cursor-not-allowed disabled:opacity-60"
         aria-label="유권자의 소리 제출"
       >
         <Send size={19} aria-hidden />
-        접수하기
+        {isSubmitting ? "접수 중..." : "접수하기"}
       </button>
+      {errorMessage ? (
+        <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-black text-red-700" role="alert">
+          {errorMessage}
+        </p>
+      ) : null}
       <style jsx>{`
         :global(.form-input) {
           width: 100%;
