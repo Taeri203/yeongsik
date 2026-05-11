@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --primary-blue: #004ea2;
+  --deep-blue: #082a5a;
+  --sky-blue: #eaf4ff;
+  --accent-yellow: #ffd84d;
+  --soft-yellow: #fff7d6;
+  --ink: #101828;
+  --muted: #667085;
+  --line: #e5e7eb;
+  --section-bg: #f8fafc;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+a,
+button,
+span {
+  word-break: keep-all;
+}
+
+.container-page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.campaign-gradient {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 216, 77, 0.34), transparent 28%),
+    radial-gradient(circle at 12% 10%, rgba(0, 78, 162, 0.18), transparent 34%),
+    linear-gradient(135deg, #ffffff 0%, #eaf4ff 54%, #ffffff 100%);
+}
+
+.map-grid {
+  background-image:
+    linear-gradient(rgba(8, 42, 90, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 42, 90, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.road-line {
+  filter: drop-shadow(0 10px 16px rgba(0, 78, 162, 0.16));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.image-soft-mask {
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, rgba(0, 0, 0, 0.86));
+  mask-image: linear-gradient(to bottom, #000 78%, rgba(0, 0, 0, 0.86));
+}
+
+.float-card {
+  animation: float-card 4.2s ease-in-out infinite;
+}
+
+.float-card:nth-child(2) {
+  animation-delay: 0.45s;
+}
+
+.float-card:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.float-card:nth-child(4) {
+  animation-delay: 1.35s;
+}
+
+.float-card:nth-child(5) {
+  animation-delay: 1.8s;
+}
+
+.family-photo-frame {
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.92), rgba(234, 244, 255, 0.86) 54%, rgba(255, 247, 214, 0.7) 100%);
+}
+
+@keyframes float-card {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(var(--rotate, 0deg));
+  }
+}
+
+@media (max-width: 767px) {
+  .container-page {
+    width: min(100% - 24px, 1120px);
+  }
+}
