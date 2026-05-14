@@ -1,21 +1,22 @@
 import type { FAQ } from "@/types";
+import { donationInfo } from "@/data/donation";
 
 export const donationFaqs: FAQ[] = [
   {
     question: "후원은 어디로 하나요?",
     answer:
-      "우영식후원회(대구시의원선거) 계좌로 후원하실 수 있습니다. 토스뱅크 1002-4847-8613, 예금주 우영식후원회(대구시의원선거)입니다.",
+      `${donationInfo.name} 계좌로 후원하실 수 있습니다. ${donationInfo.accountLabel}, 예금주 ${donationInfo.accountHolder}입니다.`,
   },
   {
-    question: "정치자금영수증은 받을 수 있나요?",
-    answer: "정치자금영수증 발급을 위해 성명, 생년월일, 연락처 등 필요한 정보를 확인할 수 있습니다.",
+    question: "영수증 발급은 어떻게 하나요?",
+    answer: "우영식.kr 후원회 페이지의 정치후원금 영수증 발급 신청 폼에서 접수할 수 있습니다.",
   },
   {
-    question: "법인이나 단체도 후원할 수 있나요?",
-    answer: "정치자금법상 제한되는 후원이 있을 수 있으므로 후원 전 후원회로 문의해 주세요.",
+    question: "세액공제는 어떻게 되나요?",
+    answer: "10만 원 이하는 전액 세액공제, 10만 원 초과분은 관련 법령에 따른 세액공제 대상이 될 수 있습니다.",
   },
   {
-    question: "후원금은 어떻게 사용되나요?",
-    answer: "후원금은 법이 정한 절차에 따라 선거운동과 정치활동에 사용되며, 투명하게 회계 처리됩니다.",
+    question: "누가 후원할 수 있나요?",
+    answer: "개인은 최대 200만 원까지 후원할 수 있으며, 법인·단체·외국인 후원은 불가합니다. 세부 자격과 한도는 후원회 또는 선거관리위원회 안내를 확인해 주세요.",
   },
 ];

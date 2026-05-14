@@ -84,6 +84,21 @@ span {
   text-wrap: balance;
 }
 
+.form-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  padding: 0.95rem 1rem;
+  color: #101828;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #004ea2;
+  box-shadow: 0 0 0 4px rgba(0, 78, 162, 0.12);
+}
+
 .image-soft-mask {
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, rgba(0, 0, 0, 0.86));
   mask-image: linear-gradient(to bottom, #000 78%, rgba(0, 0, 0, 0.86));

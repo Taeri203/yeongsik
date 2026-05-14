@@ -18,6 +18,7 @@ export function Footer() {
           <p>연락처: {siteConfig.phone}</p>
           <p>이메일: {siteConfig.email}</p>
           <p>후원회: {siteConfig.donationName}</p>
+          <p>후원계좌: {siteConfig.donationBank} {siteConfig.donationAccount}</p>
           <Link href="/privacy" className="font-bold text-[#FFD84D]">
             개인정보처리방침
           </Link>
