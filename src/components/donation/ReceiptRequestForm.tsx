@@ -6,10 +6,19 @@ import { receiptJobTypes } from "@/data/donation";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function getTodayInputValue() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export function ReceiptRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [defaultTransferDate] = useState(getTodayInputValue);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -117,7 +126,7 @@ export function ReceiptRequestForm() {
 
           <div className="grid gap-5 md:grid-cols-3">
             <Field label="송금일" id="transferDate" required>
-              <input required id="transferDate" name="transferDate" type="date" className="form-input" />
+              <input required id="transferDate" name="transferDate" type="date" className="form-input" defaultValue={defaultTransferDate} />
             </Field>
             <Field label="후원금액" id="donationAmount" required>
               <div className="relative">
